@@ -1,0 +1,1 @@
+"./uart.obj" "./shell.obj" "./parse.obj" "./main.obj" "./i2c.obj" "./console.obj" -l"libc.a" "../lnk_msp430g2553.cmd" 

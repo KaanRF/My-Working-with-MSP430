@@ -1,0 +1,17 @@
+
+**** Build of configuration Debug for project Uart kullan�m�-2 ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.1.2/bin/cl430" -vmsp --abi=eabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.1.2/include" --advice:power=all --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+'Finished building: ../main.c'
+' '
+'Building target: Uart kullanımı-2.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430_4.1.2/bin/cl430" -vmsp --abi=eabi -g --advice:power=all --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z --stack_size=80 -m"Uart kullanımı-2.map" --heap_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.1.2/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.1.2/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --rom_model -o "Uart kullanımı-2.out"  "./main.obj" -l"libc.a" "../lnk_msp430g2553.cmd" 
+<Linking>
+gmake: *** [Uart kullanımı-2.out] Error -2147483645
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****

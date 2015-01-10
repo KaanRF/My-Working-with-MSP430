@@ -1,0 +1,45 @@
+#include <msp430.h> 
+ void UARTInit(void);
+ void TXData(unsigned char c);
+
+void main(void) {
+    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
+
+    BCSCTL1=CALBC1_8MHZ;
+    DCOCTL=CALDCO_8MHZ;
+
+    UARTInit();
+    P1DIR=0X41; //P1.3 ÝNPUT, P1.0 VE P1.6 CIKIS
+    P1OUT=0X00;
+    __bis_SR_register(GIE); //tum kesmeler aktýf
+
+    while(1)
+    {
+    	if(!(P1IN&BIT3))
+    	{
+    		P1OUT=0X01;
+    		TXData('KAAN');
+    		_delay_cycles(16000000);
+    	}
+    	else
+    		P1OUT=0X40;
+    }
+}
+
+void UARTInit(void)
+{
+	P1SEL|=(BIT1+BIT2);//P1.1=RX,P1.2=TX
+	P1SEL2|=(BIT1+BIT2);// "        "
+	UCA0CTL1=UCSSEL_2;//SMCLK
+	UCA0BR0=52;
+	UCA0BR1=0;
+	
+	UCA0MCTL=0X11;
+	UCA0CTL1 &= ~UCSWRST; // USCI islemleri icin UCSWRST registeri temizlendi
+	IE2 |= UCA0RXIE; // RXD kesmesi aktif edildi
+
+}
+void TXData(unsigned char c){
+	while(!(IFG2&UCA0TXIFG));//UCA0TXIFG UCA0TXBUF bos iken set edilir.
+	UCA0TXBUF = c; // data gonderiliyor
+}
